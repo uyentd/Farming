@@ -6,6 +6,10 @@ public class CameraControl : MonoBehaviour
 {
     public Transform player;
     public Transform trans;
+    private void Awake()
+    {
+        GameManager.instance.ShowMess();
+    }
     // Start is called before the first frame update
     void Start()
     {

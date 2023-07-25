@@ -14,6 +14,8 @@ public class MoveCharacter : MonoBehaviour
         this.enabled = false;
         // this: chỉ MoveCharacter
         // để cho những GO có gắn scrip MoveCharacter khi play đều tắt đi
+       
+
 
     }
 

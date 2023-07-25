@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,17 +7,18 @@ public class SampleOOP : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Animal animal = new Animal(); // xin cấp phép vùng nhớ ( key: new), không đưa ra Inspector thì mới dùng "new"
+        Animal animal=new Animal();
         Animal animal1 = new Animal(2);
-        Dog dog = new Dog(); // khai báo class Dog
-        dog.number_legs = 4; // khai báo chó = 4 chân
-        dog.weight = 2; // khai báo cân nặng chó = 2 kg
-        dog.Move();
-        dog.Speed = 1;
 
-        Chicken chicken = new Chicken(); // khai báo class chicken
-        chicken.number_legs = 2; // khai báo gà = 2 chân
-        chicken.weight = 3;// khai báo gà nặng 3 kg
+        Dog dog = new Dog();
+        dog.number_legs = 4;
+        dog.weight = 2;
+        dog.Move();
+        dog.speed = 4;
+
+        Chicken chicken = new Chicken();
+        chicken.number_legs = 2;
+        chicken.weight = 3;
         chicken.Move();
 
         Bird bird = new Bird();
@@ -30,64 +31,66 @@ public class SampleOOP : MonoBehaviour
         
     }
 }
-
-public class Animal // 1 kiểu dữ liệu, khai báo class
+//
+public class Animal
 {
-    public int number_legs; // khai báo chân thú // funtion
-    public float weight; // khai báo cân nặng
-    private string ADN; // khai báo biến ADN, không cho các class khác kế thừa
-    protected string color; // protected: chỉ những class kế thừa từ this.class mới truy cập được
+    public int number_legs;
+    public float weight;
+    private string ADN;
+    protected string color;
     public Animal()
     {
-        
+
     }
-    public Animal ( int num_leg)// hàm khởi dựng có tham số
+    public Animal(int num_leg)
     {
-        this.number_legs = num_leg;// this: đang chỉ chính class 
+        this.number_legs = num_leg;
+        ADN = "Hexa";
     }
-    public virtual void Move () // var ( biến)
+    public virtual void Move()
     {
-        Debug.LogError("Move");
+        Debug.LogError(" Animal Move ");
     }
 }
+//1. ke thua
+//2. dong goi
+//3. truu tuong
+//4. da hinh
 
-// 1. kế thừa
-// 2. đóng gói: những cái gì có thể xử lý bên trong class thôi, bên ngoaiuf ko động tới
-// 3. trừu tượng
-// 4. đa hình: thằng cha tạo funtion, rồi thằng con định nghĩa funtion đó phù hợp với chính nó
-
-public class Dog : Animal
+public class Dog: Animal
 {
-    public int Speed;
+    public int speed = 2;
     private void Jump()
     {
-        color = "Black";
-        Debug.LogError ("Dog Jump");
+        Debug.LogError(" Dog jump  " );
+
     }
     public override void Move()
     {
-        base.Move();  // để cho thằng cha cùng chạy
-        Debug.LogError("Dog Move with 4 leg");
+        base.Move();
+        Debug.LogError(" Dog move with : " + number_legs);
+        Jump();
     }
-    
 }
 public class Chicken : Animal
 {
     public override void Move()
     {
-        base.Move();
-        Debug.LogError(" Chicken move with 2 leg");
+        Debug.LogError(" Chicken walk: " + number_legs);
     }
 }
-public class Bird: Animal
+public class Bird:Animal
 {
     public override void Move()
     {
-        base.Move();
-        Debug.LogError("Bird fly");
+        Debug.LogError("Bird Fly");
     }
 }
-public class Chihuahua : Dog
+public class ChiHuaHua:Dog
 {
-    
+    public void Bake()
+    {
+        color = "Brown";
+        
+    }
 }
