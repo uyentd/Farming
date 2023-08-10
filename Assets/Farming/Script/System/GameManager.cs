@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static readonly GameManager instance ;
+    public static GameManager instance ;
     public MoveCharacter[] moveCharacters; // khai báo movecharacter là 1 mảng, mảng thì gồm có 3 phần tử
     public int index;// giá trị mặc định index = 0
     [HideInInspector]// ẩn cur_cc trên Inspector
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     }
     public void ShowMess()// singleton của monobehavior
     {
-        Debug.LogError("Movecharacter: " + MoveCharacter.length);
+        Debug.LogError("Movecharacter: " + moveCharacters.Length );
     }    
     private void ChangeCharacter()
     {
