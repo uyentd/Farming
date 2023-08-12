@@ -45,11 +45,33 @@ public class LoadSceneManager : BYSingletonMono<LoadSceneManager>
         callback?.Invoke();
         ui_object.SetActive(false);
     }
-    public void LoadSceneByIndex(string scence_index, Action callback)
+    public void LoadSceneByIndex(int scence_index, Action callback)
     {
-
+        StartCoroutine(LoadSceneByIndexProgress(scence_index, callback));
     }
-    IEnumerable Wait()// gọi cái này, thì nó sẽ kiểm tra bên trong có bao nhiêu câu lệnh yield
+    IEnumerator LoadSceneByIndexProgress(int scene_index, Action callback)
+    {
+        ui_object.SetActive(true);
+        AsyncOperation async = SceneManager.LoadSceneAsync(scene_index, LoadSceneMode.Single);
+        WaitForSeconds wait_s = new WaitForSeconds(0.1f);
+        float count = 0;
+        while (count < 80)
+        {
+            yield return wait_s;
+            count++;
+            progress_lb.text = count.ToString() + "%";
+            image_progress.fillAmount = (float)count / 100f;
+        }
+        while (!async.isDone)
+        {
+            yield return wait_s;
+            progress_lb.text = ((int)(async.progress * 100)).ToString() + "%";
+            image_progress.fillAmount = async.progress;
+        }
+        callback?.Invoke();
+        ui_object.SetActive(false);
+    }
+        IEnumerable Wait()// gọi cái này, thì nó sẽ kiểm tra bên trong có bao nhiêu câu lệnh yield
     {
         //1, trả về 1 đối tượng Ienumerable
         yield return new WaitForSeconds(1);
