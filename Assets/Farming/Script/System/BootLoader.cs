@@ -5,40 +5,25 @@ using UnityEngine;
 
 public class BootLoader : MonoBehaviour
 {
-    public event Action<int> OnsampleEventLamda;
+    
     // Start is called before the first frame update
     IEnumerator Start()
     {
         DontDestroyOnLoad(gameObject);// sẽ luôn tồn tại, ko huỷ đi khi chuyển scene
         yield return new WaitForSeconds(1);
-        // LoadSceneManager.instance.LoadSceneByName("Buffer", LoadSceneDone);
-        LoadSceneManager.instance.LoadSceneByIndex(1, () =>
-        {
-            Debug.LogError(" Load scene by index done");
-        });
-        SampleLamda((s, a) =>
-        {
-            Debug.LogError("log:" + s + " " + a.ToString());
-        });
-        OnsampleEventLamda += BootLoader_OnsampleEventLamda;// thêm sự kiện
-        OnsampleEventLamda -= BootLoader_OnsampleEventLamda; // huỷ sự kiện
+        LoadSceneManager.instance.LoadSceneByName("Buffer", LoadSceneDone);
+       
     }
 
-    private void BootLoader_OnsampleEventLamda(int obj)
-    {
-        throw new NotImplementedException();
-    }
+
 
     public void LoadSceneDone()
     {
         Debug.LogError(" Load Scene Done");
+        ViewManage.instance.SwitchView(ViewIndex.HomeView);// load xong scene thì load home view
     }
 
-    public void SampleLamda(Action<string, int> callBack)
-    {
-        callBack("Lamda", 3);
-    }
-    // Update is called once per frame
+
     void Update()
     {
         

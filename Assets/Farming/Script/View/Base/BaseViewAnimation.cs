@@ -15,4 +15,10 @@ public class BaseViewAnimation : MonoBehaviour
     {
         
     }
+
+    private void Reset()
+    {
+        gameObject.name = this.GetType().ToString();
+    }
+
 }

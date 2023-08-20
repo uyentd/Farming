@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HomeView : MonoBehaviour
+public class HomeView : BaseView
 {
     // Start is called before the first frame update
-    void Start()
+    public override void Setup(ViewParam param)
     {
-        
+        base.Setup(param);
+        Debug.LogError("Home View");
     }
-
-    // Update is called once per frame
-    void Update()
+    public void ShowIngameView()
     {
-        
+        ViewManage.instance.SwitchView(ViewIndex.IngameView);
     }
 }

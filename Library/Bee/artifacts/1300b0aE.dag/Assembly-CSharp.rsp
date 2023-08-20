@@ -397,6 +397,7 @@
 "Assets/Farming/Script/View/Base/BaseViewAnimation.cs"
 "Assets/Farming/Script/View/Base/ViewConfig.cs"
 "Assets/Farming/Script/View/Base/ViewManage.cs"
+"Assets/Farming/Script/View/EmptyView.cs"
 "Assets/Farming/Script/View/HomeView.cs"
 "Assets/Farming/Script/View/IngameView.cs"
 "Assets/UI/GUI PRO Kit - Sci-Fi/Scripts/PanelControlSciFiSurvival.cs"
